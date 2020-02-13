@@ -4,6 +4,7 @@ import VueRouter from "vue-router";
 // 引入组件
 import Search from "@/components/Search";
 import RimValue from "@/components/RimValue";
+import user from "@/components/user";
 
 // 要告诉 vue 使用 vueRouter
 Vue.use(VueRouter);
@@ -18,7 +19,12 @@ const routes = [
         path: "/rim",
         component: RimValue
     },
-    // 重定向
+    // new user路径，配置了动态的id
+    {
+        path: "/user/:id",
+        component: user
+    },
+    // redirect 重定向
     {
         path: '/',
         redirect: '/home'
