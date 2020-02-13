@@ -1,18 +1,20 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="欢迎使用A股上市公司估值应用"/>
+    <header>
+      <!-- router-link 定义点击后导航到哪个路径下 -->
+      <router-link to="/search">Search</router-link>
+      <p>A股上市公司估值</p>
+      <router-link to="/rim">RIM Value</router-link>
+    </header>
+    <!-- 对应的组件内容渲染到router-view中 -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'  // import sub component
-
 export default {                                      // export 一个默认模块，这个模块可以匿名
   name: 'App',
-  components: {
-    HelloWorld
-  }
 }
 </script>
 
