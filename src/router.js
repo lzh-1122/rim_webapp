@@ -5,12 +5,18 @@ import VueRouter from "vue-router";
 import Search from "@/components/Search";
 import RimValue from "@/components/RimValue";
 import user from "@/components/user";
+import detail from "./components/detail";
 
 // 要告诉 vue 使用 vueRouter
 Vue.use(VueRouter);
 
 // 定义 路径到组件的 映射
 const routes = [
+    //重定向
+    {
+        path:'/',
+        redirect:'/search'
+    },
     {
         path:"/search",
         component: Search
@@ -24,14 +30,20 @@ const routes = [
         path: "/user/:id",
         component: user
     },
-    // redirect 重定向
     {
-        path: '/',
-        redirect: '/home'
-    }
+        path: "/detail/:code",
+        component: detail
+    },
+    // redirect 重定向
+    // {
+    //     path: '/',
+    //     redirect: '/home'
+    // }
 ];
 
 let router =  new VueRouter({
-    routes
+    routes,
+    mode: 'history',
+    linkActiveClass: 'active'
 });
 export default router;

@@ -1,7 +1,7 @@
 <template>
     <el-card class="box-card">
         <div slot="header" class="clearfix">
-            <span>卡片名称</span>
+            <span>分析师预测{{getCode}}</span>
             <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
         </div>
         <!-- <div v-for="o in 4" :key="o" class="text item">
@@ -36,21 +36,28 @@
                 code:'',
             };
         },
+        computed: {
+          getCode(){
+              return this.$route.params.code
+          }
+        },
         methods: {
-
         },
         mounted() {
-
             axios
-                .get('http://127.0.0.1:8001/profit-forecast/?code=000625')
+                .get('http://127.0.0.1:8001/profit-forecast/',{
+                    params: {
+                        code: this.$route.params.code
+                    }
+                })
                 // .then(response => (this.securities = [{"value": response.data["hello world"][1][1]}, {"value": "3"}])); //[{"values": "1"}, {"values": "2"}])); //response.data["hello world"][1][1]));
-                .then(response => this.forcast = response.data['000625 profit forecast']);
+                .then(response => this.forcast = response.data[ this.$route.params.code +' profit forecast']);
             // this.securities = this.loadAll();
         }
     }
 </script>
 
-<style>
+<style scoped>
     .text {
         font-size: 14px;
     }
@@ -72,8 +79,4 @@
     .box-card {
         width: 480px;
     }
-</style>
-
-<style scoped>
-
 </style>
