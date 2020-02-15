@@ -1,8 +1,7 @@
 <template>
     <div>
-        <div class="sub-title">输入后匹配输入建议</div>
         <el-autocomplete class="inline-input" v-model="state1" :fetch-suggestions="querySearch" placeholder="请输入内容"
-                         :trigger-on-focus="false"><el-button slot="append" icon="el-icon-search" @click = "jump"></el-button></el-autocomplete>
+                         :trigger-on-focus="false" @select="handleSelect"><el-button slot="append" icon="el-icon-search" @click = "jump"></el-button></el-autocomplete>
     </div>
 </template>
 
@@ -40,10 +39,7 @@
             },
             handleSelect(item) {
                 console.log(item);
-            },
-            getInputValue(){
-                let code = this.state1.replace(/[^0-9]/ig,"");
-                alert(code)
+                this.$router.push('/detail/'+ this.state1.replace(/[^0-9]/ig,""))
             },
             jump() {
                 this.$router.push('/detail/'+ this.state1.replace(/[^0-9]/ig,""))
