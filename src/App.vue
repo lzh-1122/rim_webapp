@@ -1,14 +1,9 @@
 <template>
   <div id="app">
-    <header>
-      <!-- router-link 定义点击后导航到哪个路径下 -->
-<!--      <router-link to="/search" tag="button" replace>Search</router-link>-->
-<!--      <el-button @click="SearchClick">Search</el-button>-->
-<!--      <router-link to="/rim" tag="button" replace>RIM Value</router-link>-->
-      <!--  增加两个到user组件的导航，可以看到这里使用了不同的to属性 -->
-    </header>
-    <!-- 对应的组件内容渲染到router-view中 -->
-    <router-view></router-view>
+    <el-container>
+      <el-header style="background-color: #2c3e50" ><router-link to="/search" tag="el-button" style="float: left; margin-top: 10px">search</router-link></el-header>
+      <el-main><router-view></router-view></el-main>
+    </el-container>
   </div>
 </template>
 
@@ -41,7 +36,7 @@ export default {                                      // export 一个默认模�
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  /*margin-top: 60px;*/
 }
   .router-link-active{
     color: red;

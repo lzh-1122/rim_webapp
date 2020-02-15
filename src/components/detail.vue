@@ -1,29 +1,80 @@
 <template>
-    <el-card class="box-card">
+    <el-card class="box-card" style="margin: auto; width: 90%">
         <div slot="header" class="clearfix">
-            <span>分析师预测{{getCode}}</span>
+            <span>卡片名称</span>
             <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
         </div>
-        <!-- <div v-for="o in 4" :key="o" class="text item">
-         {{'列表内容 ' + o }}
-       </div> -->
 
+<!--        content-->
         <el-row>
+<!--        left-->
             <el-col :span="12">
-                <div class="grid-content bg-purple">forcast</div>
+                <div class="grid-content bg-purple">
+                    <el-row>
+<!--                        财报数据-->
+                        <el-col :span="12">
+                            <div class="grid-content bg-purple">
+                                <el-card class="box-card" style="width: 90%">
+                                    <div slot="header" class="clearfix">
+                                        <span>财报数据</span>
+                                    </div>
+                                    <ul>
+                                        <li v-if="dataEarnings.bps === ''">bps无数据</li>
+                                        <li v-else>bps{{dataEarnings.bps}}</li>
+
+                                        <li v-if="dataEarnings.eps === ''">eps无数据</li>
+                                        <li v-else>eps{{dataEarnings.eps}}</li>
+
+                                    </ul>
+
+                                </el-card>
+                            </div>
+                        </el-col>
+
+<!--                        分析师预测-->
+                        <el-col :span="12">
+                            <div class="grid-content bg-purple-light">
+                                <el-card class="box-card" style="width: 90%">
+                                    <div slot="header" class="clearfix">
+                                        <span>分析师预测</span>
+                                    </div>
+                                    <el-row>
+                                        <el-col :span="12" style="padding-top: 10%">
+                                            <div class="grid-content bg-purple">forcast</div>
+                                        </el-col>
+                                        <el-col :span="12">
+                                            <div class="grid-content bg-purple-light">
+                                                <ul>
+                                                    <li v-if="forcast.eps_2019 === ''">无预测数据(2019)</li>
+                                                    <li v-else>{{forcast.eps_2019}} (2019)</li>
+
+                                                    <li v-if="forcast.eps_2020 === ''">无预测数据(2019)</li>
+                                                    <li v-else>{{forcast.eps_2020}} (2020)</li>
+
+                                                    <li v-if="forcast.eps_2021 === ''">无预测数据(2020)</li>
+                                                    <li v-else>{{forcast.eps_2021}} (2021)</li>
+
+                                                </ul>
+                                            </div>
+                                        </el-col>
+                                    </el-row>
+                                </el-card>
+                            </div>
+                        </el-col>
+                    </el-row>
+                </div>
             </el-col>
+
+<!--            right            -->
             <el-col :span="12">
                 <div class="grid-content bg-purple-light">
-                    <ul>
-                        <li>{{forcast.eps_2018}} (2018)</li>
-                        <li>{{forcast.eps_2019}} (2019)</li>
-                        <li>{{forcast.eps_2020}} (2020)</li>
 
-                    </ul>
                 </div>
             </el-col>
         </el-row>
+
     </el-card>
+
 </template>
 
 <script>
@@ -33,6 +84,7 @@
         data() {
             return {
                 forcast: [],
+                dataEarnings: [],
                 code:'',
             };
         },
@@ -42,6 +94,7 @@
           }
         },
         methods: {
+
         },
         mounted() {
             axios
@@ -50,9 +103,15 @@
                         code: this.$route.params.code
                     }
                 })
-                // .then(response => (this.securities = [{"value": response.data["hello world"][1][1]}, {"value": "3"}])); //[{"values": "1"}, {"values": "2"}])); //response.data["hello world"][1][1]));
                 .then(response => this.forcast = response.data[ this.$route.params.code +' profit forecast']);
-            // this.securities = this.loadAll();
+
+            axios
+                .get('http://127.0.0.1:8001/financial-indicator/',{
+                    params: {
+                        code: this.$route.params.code
+                    }
+                })
+                .then(response => this.dataEarnings = response.data[ this.$route.params.code +' 2018 financial indicator']);
         }
     }
 </script>
@@ -77,6 +136,5 @@
     }
 
     .box-card {
-        width: 480px;
     }
 </style>
