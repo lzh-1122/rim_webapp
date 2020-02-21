@@ -10,7 +10,21 @@
 <!--        left-->
             <el-col :span="12">
                 <div class="grid-content bg-purple">
-                    <el-row>
+
+<!--                    运算数据和结果-->
+                    <div class="formula">
+                        <el-popover
+                                placement="top-start"
+                                title="公式"
+                                width="200"
+                                trigger="hover">
+                            <p>Value = BPS<sub>2018</sub> + RE<sub>2019</sub> + RE<sup>'</sup><sub>2020</sub> + RE<sup>'</sup><sub>2021</sub> + CV<sup>'</sup> </p>
+                            <el-button slot="reference">{{value3}}</el-button>
+                        </el-popover>
+                    </div>
+
+
+                    <el-row style="margin-top: 30px">
 <!--                        财报数据-->
                         <el-col :span="12">
                             <div class="grid-content bg-purple">
@@ -68,13 +82,35 @@
 <!--            right            -->
             <el-col :span="12">
                 <div class="grid-content bg-purple-light">
-
+                    <div class="block">
+                        <span class="demonstration">r</span>
+                        <el-slider
+                                v-model="value1"
+                                :step= "step1"
+                                show-stops
+                                show-input
+                                :min="min1"
+                                :max="max1"
+                                >
+                        </el-slider>
+                    </div>
+                    <div class="block">
+                        <span class="demonstration">g</span>
+                        <el-slider
+                                v-model="value2"
+                                :step="step2"
+                                show-stops
+                                show-input
+                                :min="min2"
+                                :max="max2"
+                                >
+                        </el-slider>
+                    </div>
                 </div>
             </el-col>
         </el-row>
-
+<!--        {{rData}}-->
     </el-card>
-
 </template>
 
 <script>
@@ -86,6 +122,12 @@
                 forcast: [],
                 dataEarnings: [],
                 code:'',
+                RVList:[],
+                rrList:[],
+                grList:[],
+                rData:[],
+                value1: 0,value2: 0,step1:0,step2:0,min1:0,min2:0,max1:0,max2:0,
+                value3: 0
             };
         },
         computed: {
@@ -94,8 +136,33 @@
           }
         },
         methods: {
+            getRange(){
+                debugger;
+                this.rrList = this.rData.rr;
+                this.grList = this.rData.gr;
 
+                console.log(this.rrList.length);
+                let l1 = this.rrList.length - 1;
+                this.max1 = this.rrList[l1]; this.min1 = this.rrList[0];
+                this.step1 = (this.max1 -this.min1) / l1;
+
+                let l2 = this.grList.length - 1;
+                this.max2 = this.grList[l2];
+                this.min2 = this.grList[0];
+                this.step2 = (this.max2 -this.min2) / l2;
+            },
+            //
+            getRimValue(){
+                this.RVList = this.rData.re;
+                let l = this.RVList.length;
+                for (let i = 0; i < l; i++) {
+                    if (this.value1 === this.RVList[i].rr && this.value2 === this.RVList[i].gr) {
+                        return this.RVList[i].value;
+                    }
+                }
+            }
         },
+
         mounted() {
             axios
                 .get('http://127.0.0.1:8001/profit-forecast/',{
@@ -112,6 +179,20 @@
                     }
                 })
                 .then(response => this.dataEarnings = response.data[ this.$route.params.code +' 2018 financial indicator']);
+
+            axios
+                .get('http://127.0.0.1:8001/rim-value/',{
+                    params: {
+                        code: this.$route.params.code
+                    }
+                })
+                .then(response => this.rData = response.data);
+        },
+        watch: {
+            rData(val) {
+                this.getRange();
+                this.value3 = this.getRimValue();
+            }
         }
     }
 </script>
@@ -136,5 +217,9 @@
     }
 
     .box-card {
+    }
+
+    .formula {
+        font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
     }
 </style>
