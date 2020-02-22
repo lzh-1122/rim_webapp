@@ -130,11 +130,6 @@
                 value3: 0
             };
         },
-        computed: {
-          getCode(){
-              return this.$route.params.code
-          }
-        },
         methods: {
             getRange(){
                 debugger;
@@ -193,7 +188,7 @@
                 .then(response => this.rData = response.data);
         },
         watch: {
-            rData(val) {
+            rData() {
                 this.getRange();
                 this.value3 = this.getRimValue();
             }
@@ -202,14 +197,6 @@
 </script>
 
 <style scoped>
-    .text {
-        font-size: 14px;
-    }
-
-    .item {
-        margin-bottom: 18px;
-    }
-
     .clearfix:before,
     .clearfix:after {
         display: table;
