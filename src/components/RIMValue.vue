@@ -19,7 +19,7 @@
                                 width="200"
                                 trigger="hover">
                             <p>Value = BPS<sub>2018</sub> + RE<sub>2019</sub> + RE<sup>'</sup><sub>2020</sub> + RE<sup>'</sup><sub>2021</sub> + CV<sup>'</sup> </p>
-                            <el-button slot="reference">{{value3}}</el-button>
+                            <el-button slot="reference">{{getRimValue()}}</el-button>
                         </el-popover>
                     </div>
 
@@ -125,7 +125,7 @@
                 RVList:[],
                 rrList:[],
                 grList:[],
-                rData:[],
+                rData:null,
                 value1: 0,value2: 0,step1:0,step2:0,min1:0,min2:0,max1:0,max2:0,
                 value3: 0
             };
@@ -153,13 +153,17 @@
             },
             //
             getRimValue(){
-                this.RVList = this.rData.re;
-                let l = this.RVList.length;
-                for (let i = 0; i < l; i++) {
-                    if (this.value1 === this.RVList[i].rr && this.value2 === this.RVList[i].gr) {
-                        return this.RVList[i].value;
+                if (this.rData != null) {
+                    this.RVList = this.rData.re;
+                    let l = this.RVList.length;
+                    for (let i = 0; i < l; i++) {
+                        if (this.value1 === this.RVList[i].rr && this.value2 === this.RVList[i].gr) {
+                            return this.RVList[i].value;
+                        }
                     }
                 }
+                else
+                    return 3.14
             }
         },
 

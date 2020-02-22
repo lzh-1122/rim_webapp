@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 
 // 引入组件
 import Search from "@/components/Search";
-import detail from "./components/detail";
+import detail from "./components/RIMValue";
 
 // 要告诉 vue 使用 vueRouter
 Vue.use(VueRouter);
