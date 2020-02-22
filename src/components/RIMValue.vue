@@ -11,17 +11,7 @@
                 <div class="grid-content bg-purple">
 
 <!--                    运算数据和结果-->
-                    <div class="formula">
-                        <el-popover
-                                placement="top-start"
-                                title="公式"
-                                width="200"
-                                trigger="hover">
-                            <p>Value = BPS<sub>2018</sub> + RE<sub>2019</sub> + RE<sup>'</sup><sub>2020</sub> + RE<sup>'</sup><sub>2021</sub> + CV<sup>'</sup> </p>
-                            <el-button slot="reference">{{getRimValue()}}</el-button>
-                        </el-popover>
-                    </div>
-
+                    <RIMValueResult :welcome= getRimValue()></RIMValueResult>
 
                     <el-row style="margin-top: 30px">
 <!--                        财报数据-->
@@ -114,8 +104,12 @@
 
 <script>
     import axios from 'axios';
+    import RIMValueResult from "./RIMValueResult";
     export default {
         name: 'rimvalue',
+        components: {
+          'RIMValueResult' : RIMValueResult
+        },
         data() {
             return {
                 forcast: [],
