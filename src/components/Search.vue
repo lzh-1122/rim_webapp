@@ -32,7 +32,7 @@
             },
             handle_securities_4_combobox(response) {
                 // this.securities = [{"value": response.data["hello world"][0][1] + "(" + response.data["hello world"][0][0] + ")"}];
-                for (let i of response.data["hello world"]) {
+                for (let i in response.data["hello world"]) {
                     this.securities.unshift({"value": response.data["hello world"][i][1] + "(" + response.data["hello world"][i][0] + "," + response.data["hello world"][i][2]+")"})
                 }
                 this.info = response.data["hello world"]

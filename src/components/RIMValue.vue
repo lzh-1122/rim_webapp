@@ -1,7 +1,7 @@
 <template>
     <el-card class="box-card" style="margin: auto; width: 90%">
         <div slot="header" class="clearfix">
-            <span>卡片名称</span>
+            <span>上市公司: &nbsp; {{code}}</span>
             <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
         </div>
 
@@ -121,7 +121,7 @@
             return {
                 forcast: [],
                 dataEarnings: [],
-                code:'',
+                code: this.$route.params.code,
                 RVList:[],
                 rrList:[],
                 grList:[],
