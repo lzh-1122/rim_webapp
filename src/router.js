@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 
 // 引入组件
 import Search from "@/components/Search";
-import detail from "./components/RIMValue";
+import RIMValue from "@/components/RIMValue";
 
 // 要告诉 vue 使用 vueRouter
 Vue.use(VueRouter);
@@ -29,8 +29,8 @@ const routes = [
     //     component: user
     // },
     {
-        path: "/detail/:code",
-        component: detail
+        path: "/RIMValue/:code",
+        component: RIMValue
     },
     // redirect 重定向
     // {

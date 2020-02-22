@@ -32,25 +32,23 @@
             },
             handle_securities_4_combobox(response) {
                 // this.securities = [{"value": response.data["hello world"][0][1] + "(" + response.data["hello world"][0][0] + ")"}];
-                for (let i in response.data["hello world"]) {
+                for (let i of response.data["hello world"]) {
                     this.securities.unshift({"value": response.data["hello world"][i][1] + "(" + response.data["hello world"][i][0] + "," + response.data["hello world"][i][2]+")"})
                 }
                 this.info = response.data["hello world"]
             },
             handleSelect(item) {
                 console.log(item);
-                this.$router.push('/detail/'+ this.state1.replace(/[^0-9]/ig,""))
+                this.$router.push('/RIMValue/'+ this.state1.replace(/[^0-9]/ig,""))
             },
             jump() {
-                this.$router.push('/detail/'+ this.state1.replace(/[^0-9]/ig,""))
+                this.$router.push('/RIMValue/'+ this.state1.replace(/[^0-9]/ig,""))
             }
         },
         mounted() {
             axios
                 .get('http://127.0.0.1:8001/securities')
-                // .then(response => (this.securities = [{"value": response.data["hello world"][1][1]}, {"value": "3"}])); //[{"values": "1"}, {"values": "2"}])); //response.data["hello world"][1][1]));
                 .then(this.handle_securities_4_combobox);
-            // this.securities = this.loadAll();
         }
     }
 </script>
