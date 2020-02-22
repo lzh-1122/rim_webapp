@@ -19,24 +19,10 @@ const routes = [
         path:"/search",
         component: Search
     },
-    // {
-    //     path: "/rim",
-    //     component: RimValue
-    // },
-    // // new user路径，配置了动态的id
-    // {
-    //     path: "/user/:id",
-    //     component: user
-    // },
     {
         path: "/RIMValue/:code",
         component: RIMValue
-    },
-    // redirect 重定向
-    // {
-    //     path: '/',
-    //     redirect: '/home'
-    // }
+    }
 ];
 
 let router =  new VueRouter({
