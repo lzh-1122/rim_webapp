@@ -10,12 +10,12 @@
             <el-table-column
                     prop="des"
                     label="标题"
-                    width="200">
+                    width="180">
             </el-table-column>
             <el-table-column
                     prop="value"
                     label="数据"
-                    width="200">
+                    width="180">
             </el-table-column>
         </el-table>
     </div>

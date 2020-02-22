@@ -1,5 +1,5 @@
 <template>
-    <div>{{result}}</div>
+    <div>内在价值：{{result}}</div>
 </template>
 
 <script>

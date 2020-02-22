@@ -27,34 +27,11 @@
 <!--            right            -->
             <el-col :span="12">
                 <div class="grid-content bg-purple-light">
-                    <div class="block">
-                        <span class="demonstration">r</span>
-                        <el-slider
-                                v-model="value1"
-                                :step= "step1"
-                                show-stops
-                                show-input
-                                :min="min1"
-                                :max="max1"
-                                >
-                        </el-slider>
-                    </div>
-                    <div class="block">
-                        <span class="demonstration">g</span>
-                        <el-slider
-                                v-model="value2"
-                                :step="step2"
-                                show-stops
-                                show-input
-                                :min="min2"
-                                :max="max2"
-                                >
-                        </el-slider>
-                    </div>
+                    <RIMValueSlider :slider-min="min1" :slider-max="max1" :slider-step="step1" slider-name="r" @func="getValue1FormSon"></RIMValueSlider>
+                    <RIMValueSlider :slider-min="min2" :slider-max="max2" :slider-step="step2" slider-name="g" @func="getValue2FormSon"></RIMValueSlider>
                 </div>
             </el-col>
         </el-row>
-<!--        {{rData}}-->
     </el-card>
 </template>
 
@@ -62,11 +39,13 @@
     import axios from 'axios';
     import RIMValueResult from "./RIMValueResult";
     import RIMValueTable from "./RIMValueTable";
+    import RIMValueSlider from "./RIMValueSlider";
     export default {
         name: 'rimvalue',
         components: {
           'RIMValueResult' : RIMValueResult,
-          'RIMValueTable' : RIMValueTable
+          'RIMValueTable' : RIMValueTable,
+          'RIMValueSlider' : RIMValueSlider,
         },
         data() {
             return {
@@ -78,7 +57,6 @@
                 grList:[],
                 rData:null,
                 value1: 0,value2: 0,step1:0,step2:0,min1:0,min2:0,max1:0,max2:0,
-                value3: 0
             };
         },
         methods: {
@@ -118,6 +96,14 @@
                 }
                 else
                     return 3.14
+            },
+
+            getValue1FormSon(data){
+                this.value1 = data;
+            },
+
+            getValue2FormSon(data){
+                this.value2 = data;
             }
         },
 
