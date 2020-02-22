@@ -1,6 +1,6 @@
 <template>
     <div>
-        <span>财报数据</span>
+        <span>{{tblTitle}}</span>
         <div style="width: 90%"><el-divider></el-divider></div>
         <el-table
                 :data="tblData"
@@ -24,7 +24,7 @@
 <script>
     export default {
         name: "RIMValueTable",
-        props: {tblData: Array},
+        props: {tblData: Array, tblTitle: String},
         methods:{
             Center({row, column, rowIndex, columnIndex}) {
                 return 'text-align:center'

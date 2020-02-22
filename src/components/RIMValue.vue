@@ -14,40 +14,11 @@
                     <RIMValueResult :result= getRimValue()></RIMValueResult>
 
                     <el-row style="margin-top: 30px">
-<!--                        财报数据-->
                         <el-col :span="12">
-                            <RIMValueTable :tbl-data="get2018Indicator()"></RIMValueTable>
+                            <RIMValueTable :tbl-data="get2018Indicator()" tbl-title="财报数据"></RIMValueTable>
                         </el-col>
-
-<!--                        分析师预测-->
                         <el-col :span="12">
-                            <div class="grid-content bg-purple-light">
-                                <el-card class="box-card" style="width: 90%">
-                                    <div slot="header" class="clearfix">
-                                        <span>分析师预测</span>
-                                    </div>
-                                    <el-row>
-                                        <el-col :span="12" style="padding-top: 10%">
-                                            <div class="grid-content bg-purple">forcast</div>
-                                        </el-col>
-                                        <el-col :span="12">
-                                            <div class="grid-content bg-purple-light">
-                                                <ul>
-                                                    <li v-if="forcast.eps_2019 === ''">无预测数据(2019)</li>
-                                                    <li v-else>{{forcast.eps_2019}} (2019)</li>
-
-                                                    <li v-if="forcast.eps_2020 === ''">无预测数据(2019)</li>
-                                                    <li v-else>{{forcast.eps_2020}} (2020)</li>
-
-                                                    <li v-if="forcast.eps_2021 === ''">无预测数据(2020)</li>
-                                                    <li v-else>{{forcast.eps_2021}} (2021)</li>
-
-                                                </ul>
-                                            </div>
-                                        </el-col>
-                                    </el-row>
-                                </el-card>
-                            </div>
+                            <RIMValueTable :tbl-data="getForecast()" tbl-title="分析师预测均值"></RIMValueTable>
                         </el-col>
                     </el-row>
                 </div>
@@ -107,23 +78,18 @@
                 grList:[],
                 rData:null,
                 value1: 0,value2: 0,step1:0,step2:0,min1:0,min2:0,max1:0,max2:0,
-                value3: 0,
-                tblData: [
-                    {
-                        value: '3.14',
-                        des: 'bps'
-                    },
-                    {
-                        value: '3.124',
-                        des: 'eps'
-                    }
-                ]
+                value3: 0
             };
         },
         methods: {
             get2018Indicator() {
                 return [{des: '每股净资产BPS', value: this.dataEarnings.bps},
                     {des: '每股净收益EPS', value: this.dataEarnings.eps}]
+            },
+            getForecast() {
+                return [{des: '2019年EPS', value: this.forcast.eps_2019},
+                    {des: '2020年EPS', value: this.forcast.eps_2020},
+                    {des: '2021年EPS', value: this.forcast.eps_2021}]
             },
             getRange(){
                 this.rrList = this.rData.rr;
