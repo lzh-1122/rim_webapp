@@ -11,27 +11,12 @@
                 <div class="grid-content bg-purple">
 
 <!--                    运算数据和结果-->
-                    <RIMValueResult :welcome= getRimValue()></RIMValueResult>
+                    <RIMValueResult :result= getRimValue()></RIMValueResult>
 
                     <el-row style="margin-top: 30px">
 <!--                        财报数据-->
                         <el-col :span="12">
-                            <div class="grid-content bg-purple">
-                                <el-card class="box-card" style="width: 90%">
-                                    <div slot="header" class="clearfix">
-                                        <span>财报数据</span>
-                                    </div>
-                                    <ul>
-                                        <li v-if="dataEarnings.bps === ''">bps无数据</li>
-                                        <li v-else>bps{{dataEarnings.bps}}</li>
-
-                                        <li v-if="dataEarnings.eps === ''">eps无数据</li>
-                                        <li v-else>eps{{dataEarnings.eps}}</li>
-
-                                    </ul>
-
-                                </el-card>
-                            </div>
+                            <RIMValueTable :tbl-data="get2018Indicator()"></RIMValueTable>
                         </el-col>
 
 <!--                        分析师预测-->
@@ -105,10 +90,12 @@
 <script>
     import axios from 'axios';
     import RIMValueResult from "./RIMValueResult";
+    import RIMValueTable from "./RIMValueTable";
     export default {
         name: 'rimvalue',
         components: {
-          'RIMValueResult' : RIMValueResult
+          'RIMValueResult' : RIMValueResult,
+          'RIMValueTable' : RIMValueTable
         },
         data() {
             return {
@@ -120,12 +107,25 @@
                 grList:[],
                 rData:null,
                 value1: 0,value2: 0,step1:0,step2:0,min1:0,min2:0,max1:0,max2:0,
-                value3: 0
+                value3: 0,
+                tblData: [
+                    {
+                        value: '3.14',
+                        des: 'bps'
+                    },
+                    {
+                        value: '3.124',
+                        des: 'eps'
+                    }
+                ]
             };
         },
         methods: {
+            get2018Indicator() {
+                return [{des: '每股净资产BPS', value: this.dataEarnings.bps},
+                    {des: '每股净收益EPS', value: this.dataEarnings.eps}]
+            },
             getRange(){
-                debugger;
                 this.rrList = this.rData.rr;
                 this.grList = this.rData.gr;
 

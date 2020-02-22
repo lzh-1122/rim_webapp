@@ -1,11 +1,11 @@
 <template>
-    <div>{{welcome}}</div>
+    <div>{{result}}</div>
 </template>
 
 <script>
     export default {
         name: "RIMValueResult",
-        props: ['welcome']
+        props: {result: Number}
     }
 </script>
 
