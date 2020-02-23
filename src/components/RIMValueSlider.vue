@@ -1,12 +1,15 @@
 <template>
     <div class="block">
-        <span>{{sliderName}}</span>
+        <el-row>
+            <el-col :span="1"><div class="grid-content bg-purple"><span>{{sliderName}}</span></div></el-col>
+            <el-col :span="22"><div class="grid-content bg-purple-light"></div></el-col>
+            <el-col :span="1"><div class="grid-content bg-purple"><span>{{value1}}</span></div></el-col>
+        </el-row>
         <el-slider
                 v-model="value1"
                 :step= "sliderStep"
                 :min="sliderMin"
                 :max="sliderMax"
-                show-input
         >
         </el-slider>
     </div>

@@ -61,17 +61,17 @@
         },
         methods: {
             get2018Indicator() {
-                return [{des: '每股净资产BPS', value: this.dataEarnings.bps},
-                    {des: '每股净收益EPS', value: this.dataEarnings.eps}]
+                return [{des: '每股净资产BPS', value: this.dataEarnings['bps']},
+                    {des: '每股净收益EPS', value: this.dataEarnings['eps']}]
             },
             getForecast() {
-                return [{des: '2019年EPS', value: this.forcast.eps_2019},
-                    {des: '2020年EPS', value: this.forcast.eps_2020},
-                    {des: '2021年EPS', value: this.forcast.eps_2021}]
+                return [{des: '2019年EPS', value: this.forcast['eps_2019']},
+                    {des: '2020年EPS', value: this.forcast['eps_2020']},
+                    {des: '2021年EPS', value: this.forcast['eps_2021']}]
             },
             getRange(){
-                this.rrList = this.rData.rr;
-                this.grList = this.rData.gr;
+                this.rrList = this.rData['rr'];
+                this.grList = this.rData['gr'];
 
                 console.log(this.rrList.length);
                 let l1 = this.rrList.length - 1;
@@ -89,7 +89,7 @@
                     this.RVList = this.rData.re;
                     let l = this.RVList.length;
                     for (let i = 0; i < l; i++) {
-                        if (this.value1 === this.RVList[i].rr && this.value2 === this.RVList[i].gr) {
+                        if (this.value1 === this.RVList[i]['rr'] && this.value2 === this.RVList[i]['gr']) {
                             return this.RVList[i].value;
                         }
                     }
@@ -135,7 +135,6 @@
         watch: {
             rData() {
                 this.getRange();
-                this.value3 = this.getRimValue();
             }
         }
     }
