@@ -32,6 +32,8 @@
                 </div>
             </el-col>
         </el-row>
+        <el-divider></el-divider>
+        <RIMValueRader :rader-mm=raderData1.mm :rader-mg=raderData1.mg :rader-mgrank=raderData1.mg_rank :rader-ms=raderData1.ms :rader-msrank=raderData1.ms_rank></RIMValueRader>
     </el-card>
 </template>
 
@@ -40,12 +42,14 @@
     import RIMValueResult from "./RIMValueResult";
     import RIMValueTable from "./RIMValueTable";
     import RIMValueSlider from "./RIMValueSlider";
+    import RIMValueRadar from "./RIMValueRadar";
     export default {
         name: 'rimvalue',
         components: {
           'RIMValueResult' : RIMValueResult,
           'RIMValueTable' : RIMValueTable,
           'RIMValueSlider' : RIMValueSlider,
+          'RIMValueRader' : RIMValueRadar
         },
         data() {
             return {
@@ -57,6 +61,7 @@
                 grList:[],
                 rData:null,
                 value1: 0,value2: 0,step1:0,step2:0,min1:0,min2:0,max1:0,max2:0,
+                raderData1: null
             };
         },
         methods: {
@@ -131,6 +136,14 @@
                     }
                 })
                 .then(response => this.rData = response.data);
+
+            axios
+                .get('http://127.0.0.1:8001/profitability/mg-ms', {
+                    params: {
+                        code: this.$route.params.code
+                    }
+                })
+            .then(response => this.raderData1 = response.data)
         },
         watch: {
             rData() {
@@ -152,9 +165,5 @@
     }
 
     .box-card {
-    }
-
-    .formula {
-        font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
     }
 </style>
