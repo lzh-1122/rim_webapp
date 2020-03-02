@@ -8,9 +8,13 @@ import axios from 'axios';
 import VueAxios from 'vue-axios';
 import router from "@/router";
 
+import echarts from 'echarts'
+
 Vue.use(ElementUI);
 
 Vue.use(VueAxios, axios);
+
+Vue.prototype.$echarts = echarts;
 
 Vue.config.productionTip = false;       // block 生产环境中的Tip消息
 
