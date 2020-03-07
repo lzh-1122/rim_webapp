@@ -4,8 +4,9 @@
 
 <script>
     export default {
-        name: 'hello',
-        props: {raderMm: Number, raderMg: Number, raderMgrank: Number, raderMs: Number, raderMsrank: Number},
+        name: 'Quality Radar',
+        props: {profitability: Number, operatingEfficiency: Number, surplusQuality: Number,
+            InvestmentIndex: Number, intangibleAssetsIndex: Number},
         data () {
             return {
                 msg: 'Welcome to Your Vue.js App'
@@ -41,7 +42,7 @@
                         indicator: [
                             { name: 'mm', max: 100},
                             { name: '管理（Administration）', max: 16000},
-                            { name: '信息技术（Information Techology）', max: 30000},
+                            { name: '信息技术（Information Technology）', max: 30000},
                             { name: '客服（Customer Support）', max: 38000},
                             { name: '研发（Development）', max: 52000},
                         ]
@@ -56,7 +57,7 @@
                                 name: '预算分配（Allocated Budget）'
                             },
                             {
-                                value: [this.raderMm, 14000, 28000, 31000, 42000],
+                                value: [this.profitability, 14000, 28000, 31000, 42000],
                                 name: '实际开销（Actual Spending）'
                             }
                         ]

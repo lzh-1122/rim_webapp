@@ -42,7 +42,7 @@
     import RIMValueResult from "./RIMValueResult";
     import RIMValueTable from "./RIMValueTable";
     import RIMValueSlider from "./RIMValueSlider";
-    import RIMValueRadar from "./RIMValueRadar";
+    import RIMValueRadar from "./QualityRadar";
     export default {
         name: 'rimvalue',
         components: {
