@@ -1,9 +1,8 @@
 <template>
     <div class="block">
-        <el-row>
-            <el-col :span="1"><div class="grid-content bg-purple"><span>{{sliderName}}</span></div></el-col>
-            <el-col :span="22"><div class="grid-content bg-purple-light"></div></el-col>
-            <el-col :span="1"><div class="grid-content bg-purple"><span>{{value1}}</span></div></el-col>
+        <el-row :gutter="10">
+            <el-col :span="6"><div class="grid-content bg-purple"><span>{{sliderName}}</span></div></el-col>
+            <el-col :span="6"><div class="grid-content bg-purple"><span>{{value1}}</span></div></el-col>
         </el-row>
         <el-slider
                 v-model="value1"
@@ -18,10 +17,10 @@
 <script>
     export default {
         name: "RIMValueSlider",
-        props: {sliderMin: Number, sliderMax: Number, sliderStep: Number, sliderName: String},
+        props: {sliderMin: Number, sliderMax: Number, sliderStep: Number, sliderName: String, sliderValue: Number},
         data() {
             return {
-                value1: 0
+                value1: this.sliderValue
             };
         },
         methods: {
