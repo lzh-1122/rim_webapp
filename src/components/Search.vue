@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <el-autocomplete class="inline-input" v-model="state1" :fetch-suggestions="querySearch" placeholder="请输入内容"
-                         :trigger-on-focus="false" @select="handleSelect"><el-button slot="append" icon="el-icon-search" @click = "jump"></el-button></el-autocomplete>
+    <div class="searchbar">
+        <el-autocomplete class="inline-input" v-model="state1" :fetch-suggestions="querySearch" placeholder="请输代码/公司名称/拼音简称"
+                         :trigger-on-focus="false" @select="handleSelect" style="width: 400px"><el-button slot="append" icon="el-icon-search" @click = "jump"></el-button></el-autocomplete>
     </div>
 </template>
 
@@ -47,12 +47,14 @@
         },
         mounted() {
             axios
-                .get('http://127.0.0.1:8001/securities')
+                .get('http://106.15.137.244:80/securities')
                 .then(this.handle_securities_4_combobox);
         }
     }
 </script>
 
-<style scoped>
-
+<style>
+.searchbar {
+    margin-top: 10%;
+}
 </style>
