@@ -30,6 +30,7 @@
                     return (securities.value.toLowerCase().indexOf(queryString.toLowerCase()) >= 0);
                 };
             },
+
             handle_securities_4_combobox(response) {
                 // this.securities = [{"value": response.data["hello world"][0][1] + "(" + response.data["hello world"][0][0] + ")"}];
                 for (let i in response.data["hello world"]) {
@@ -39,7 +40,14 @@
             },
             handleSelect(item) {
                 console.log(item);
-                this.$router.push('/rimvalue-new/'+ this.state1.replace(/[^0-9]/ig,""))
+                // this.$router.push('/rimvalue-new/'+ this.state1.replace(/[^0-9]/ig,""))
+                this.$router.push({
+                    path: '/rimvalue-new/',
+                    query: {
+                        code: this.state1.replace(/[^0-9]/ig,""),
+                        name: this.state1.slice(0, this.state1.indexOf('('))
+                    }
+                })
             },
             jump() {
                 this.$router.push('/rimvalue-new/'+ this.state1.replace(/[^0-9]/ig,""))

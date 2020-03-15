@@ -17,7 +17,7 @@ const routes = [
         component: Home
     },
     {
-        path: "/rimvalue-new/:code",
+        path: "/rimvalue-new/",
         name: "rimvalue-new",
         component: RIMValueNew
     }
