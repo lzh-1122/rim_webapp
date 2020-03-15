@@ -2,9 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 // 引入组件
-import Search from "@/components/Search";
-import RIMValue from "@/components/RIMValue";
 import Home from "./view/Home";
+import RIMValueNew from "./view/RIMValueNew";
 
 // 要告诉 vue 使用 vueRouter
 Vue.use(VueRouter);
@@ -17,18 +16,11 @@ const routes = [
         name: 'Home',
         component: Home
     },
-    // {
-    //     path:'/',
-    //     redirect:'/search'
-    // },
-    // {
-    //     path:"/search",
-    //     component: Search
-    // },
     {
-        path: "/RIMValue/:code",
-        component: RIMValue
-    },
+        path: "/rimvalue-new/:code",
+        name: "rimvalue-new",
+        component: RIMValueNew
+    }
 ];
 
 let router =  new VueRouter({

@@ -1,5 +1,5 @@
 <template>
-    <div>内在价值：{{result}}</div>
+    <strong class="rim_result">内在价值：{{result}}</strong>
 </template>
 
 <script>
@@ -9,6 +9,8 @@
     }
 </script>
 
-<style scoped>
-
+<style>
+.rim_result {
+    font-size: x-large;
+}
 </style>

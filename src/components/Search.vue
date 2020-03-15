@@ -39,10 +39,10 @@
             },
             handleSelect(item) {
                 console.log(item);
-                this.$router.push('/RIMValue/'+ this.state1.replace(/[^0-9]/ig,""))
+                this.$router.push('/rimvalue-new/'+ this.state1.replace(/[^0-9]/ig,""))
             },
             jump() {
-                this.$router.push('/RIMValue/'+ this.state1.replace(/[^0-9]/ig,""))
+                this.$router.push('/rimvalue-new/'+ this.state1.replace(/[^0-9]/ig,""))
             }
         },
         mounted() {
