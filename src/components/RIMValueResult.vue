@@ -5,7 +5,7 @@
 <script>
     export default {
         name: "RIMValueResult",
-        props: {result: Number}
+        props: {result: String}
     }
 </script>
 

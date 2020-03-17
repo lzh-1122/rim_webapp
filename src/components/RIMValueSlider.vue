@@ -1,18 +1,16 @@
 <template>
     <div class="block">
         <el-row>
-            <el-col :span="12">
-                <div class="titlebar">{{name}}</div>
-            </el-col>
-            <el-col :span="12">
-                <div class="valuebar">{{value}}</div>
+            <el-col :span="24">
+                <div class="detailbar">{{name}}</div>
             </el-col>
         </el-row>
         <el-slider
                 v-model="value"
                 :step="step"
                 :min="min"
-                :max="max">
+                :max="max"
+                :show-tooltip="false">
         </el-slider>
     </div>
 </template>
@@ -20,10 +18,10 @@
 <script>
   export default {
     name: "RIMValueSlider",
-    props: {ConfigInfo: Object},
+    props: {ConfigInfo: Object, CaptionFn: Function},
     data() {
       return {
-        name: this.ConfigInfo.name,
+        name:  this.CaptionFn(this.ConfigInfo.defaultValue),
         value: this.ConfigInfo.defaultValue,
         min: this.ConfigInfo.min,
         max: this.ConfigInfo.max,
@@ -38,18 +36,16 @@
     },
     watch: {
       value(val) {
-        this.sendValue()
+        this.sendValue();
+        this.name = this.CaptionFn(this.value)
       }
     }
   }
 </script>
 
 <style>
-    .titlebar {
-        height: 6px;
-    }
-
-    .valuebar {
-        height: 6px;
+    .detailbar {
+        height: 16px;
+        text-align: left;
     }
 </style>
