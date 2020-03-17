@@ -39,7 +39,14 @@
             },
             handleSelect(item) {
                 console.log(item);
-                this.$router.push('/rimvalue-new/'+ this.state1.replace(/[^0-9]/ig,""))
+              this.$router.push({
+                path: '/rimvalue-new/',
+                query: {
+                  code: this.state1.replace(/[^0-9]/ig,""),
+                  name: this.state1.slice(0, this.state1.indexOf('('))
+                }
+              })
+
             },
             jump() {
                 this.$router.push('/rimvalue-new/'+ this.state1.replace(/[^0-9]/ig,""))

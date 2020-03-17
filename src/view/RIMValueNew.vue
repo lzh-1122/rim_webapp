@@ -63,7 +63,8 @@
     data() {
       return {
         rData: null,
-        code: this.$route.params.code,
+        code: this.$route.query.code,
+        name: this.$route.query.name,
         RValue: 0.1, G1Value: 0, G2Value: 0, T1Value: 0, T2Value: 0
       };
     },
@@ -173,7 +174,7 @@
           let result = [{year: 2018, bps: this.rData["last_bps"][1]}];
           return this.calcRI2018(rimParameter2018, 2019, result)
             .slice(1)
-            .reduce((x, y) => x + y.discounted_ri, 0);
+            .reduce((x, y) => x + y.discounted_ri, 0).toFixed(2);
         }
       },
       calcRI2018(p, year, result) {
@@ -218,7 +219,7 @@
       axios
         .get("http://106.15.137.244:80/v1.0/rim-proposal", {
           params: {
-            code: this.$route.params.code
+            code: this.$route.query.code
           }
         })
         .then(response => (this.rData = response.data));
